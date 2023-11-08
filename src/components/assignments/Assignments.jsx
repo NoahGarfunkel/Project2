@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import { List, ListItem, ListItemText } from "@mui/material";
 import "./Assignments.css";
@@ -18,7 +19,10 @@ const assignments = [
 function Assignments() {
   return (
     <div className="Assignments">
-      <h1>Assignments</h1>
+          <h1>Assignments</h1>
+          <Button id="upcoming" variant="contained" color="primary" href="/class/upcoming">
+              View Upcoming Assignments
+          </Button>
       <List>
         {assignments.map((assignment, index) => (
           <ListItem key={index} button component={Link} to={`/assignments/${assignment.page}`} style={{
