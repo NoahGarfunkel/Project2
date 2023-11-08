@@ -39,7 +39,10 @@ function Header() {
         <Button color="inherit" href="/class/syllabus">
           Syllabus
         </Button>
-        <Button color="inherit" href="/class/announcments">
+        <Button color="inherit" href="/class/assignments">
+          Assignments
+        </Button>
+        <Button color="inherit" href="/class/announcements">
           Announcements
         </Button>
       </Toolbar>
