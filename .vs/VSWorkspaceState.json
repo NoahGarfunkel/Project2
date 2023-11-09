@@ -1,7 +1,16 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\public",
+    "\\public\\htmlContent",
+    "\\src",
+    "\\src\\components",
+    "\\src\\components\\Modules",
+    "\\src\\components\\shared",
+    "\\src\\components\\shared\\header",
+    "\\src\\components\\syllabus",
+    "\\src\\components\\upcoming"
   ],
-  "SelectedNode": "\\C:\\Users\\Eli\\Source\\Repos\\Project2",
+  "SelectedNode": "\\public\\htmlContent\\assignment_01.html",
   "PreviewInSolutionExplorer": false
 }

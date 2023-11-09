@@ -115,7 +115,6 @@ function Modules() {
                                 <FolderIcon color="primary"/>
                             </ListItemIcon>
                             <ListItemText primary={`Module ${module.modNum}: ${module.name}`} />
-                            {open ? <ExpandLess /> : <ExpandMore />}
                         </ListItem>
                         <List>
                             {module.content.map((content, indexContent) => (
