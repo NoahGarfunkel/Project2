@@ -38,6 +38,9 @@ function Header() {
         </Typography>
         <Button color="inherit" href="/class/syllabus">
           Syllabus
+              </Button>
+        <Button color="inherit" href="/class/modules">
+          Modules
         </Button>
         <Button color="inherit" href="/class/assignments">
           Assignments
