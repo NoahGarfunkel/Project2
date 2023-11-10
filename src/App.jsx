@@ -7,6 +7,8 @@ import Assignments from "./components/Assignments/assignments";
 import AssignmentDetail from "./components/assignments/AssignmentDetail";
 import Upcoming from "./components/upcoming/Upcoming";
 import Grades from "./components/grades/Grades";
+import AnnouncementsList from "./components/announcements/AnnouncementsList";
+import Announcement from "./components/announcements/Announcement";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
           <Route path="/class/assignments/" exact element={<Assignments />} />
           <Route path="/class/upcoming/" exact element={<Upcoming />} />
           <Route path="/class/grades/" exact element={<Grades />} />
+          <Route path="/class/announcements" exact element={<AnnouncementsList />} />
+          <Route path="/class/announcements/:announcementId" element={<Announcement />} />
           <Route path="/assignments/:pageName" element={<AssignmentDetail />} />
         </Routes>
       </BrowserRouter>

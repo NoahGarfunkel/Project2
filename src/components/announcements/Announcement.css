@@ -1,0 +1,25 @@
+.grid-title {
+  margin: 0%;
+}
+
+.grid-announcer {
+  margin: 0%;
+}
+
+h2 {
+    margin-bottom: 0%;
+}
+
+h6 {
+    margin-top: 0%;
+    margin-bottom: 0%;
+}
+
+h5 {
+    margin-top:0%
+}
+
+.message-body {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; 
+    line-height: 200%;
+}
