@@ -42,11 +42,14 @@ function Header() {
         <Button color="inherit" href="/class/modules">
           Modules
         </Button>
-        <Button color="inherit" href="/class/assignments">
+        <Button color="inherit" href="/class/upcoming">
           Assignments
         </Button>
         <Button color="inherit" href="/class/announcements">
           Announcements
+        </Button>
+        <Button color="inherit" href="/class/grades">
+          Grades
         </Button>
       </Toolbar>
     </AppBar>
