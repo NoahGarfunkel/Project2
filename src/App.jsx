@@ -17,6 +17,7 @@ import Grades from "./components/grades/Grades";
 import AnnouncementsList from "./components/announcements/AnnouncementsList";
 import Announcement from "./components/announcements/Announcement";
 import Dashboard from "./components/dashboard/Dashboard";
+import Zoom from "./components/zoom/Zoom";
 
 function App() {
   return (
@@ -69,6 +70,10 @@ function App() {
           <Route
             path="/canvas/class/:className/assignments/:pageName"
             element={<AssignmentDetail />}
+          />
+          <Route
+            path="/canvas/class/:className/zoom"
+            element={<Zoom />}
           />
         </Routes>
     </BrowserRouter>

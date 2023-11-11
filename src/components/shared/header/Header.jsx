@@ -70,6 +70,9 @@ function Header() {
             <Button color="inherit" href={`/canvas/class/${classCode}/grades`}>
               Grades
             </Button>
+            <Button color="inherit" href={`/canvas/class/${classCode}/zoom`}>
+              Zoom
+            </Button>
           </div>
         )}
       </Toolbar>
