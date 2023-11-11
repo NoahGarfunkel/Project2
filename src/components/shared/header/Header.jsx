@@ -7,8 +7,25 @@ import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
 import Button from "@mui/material/Button";
 import "./Header.css";
+import { useState } from "react";
+import { useLocation, useParams } from "react-router-dom";
+import { useEffect } from "react";
 
 function Header() {
+  const location = useLocation();
+  const [isClass, SetIsClass] = useState([]);
+  const [classCode, SetClassCode] = useState([]);
+
+  useEffect(() => {
+    if (location.pathname.includes("class")) {
+      SetIsClass(true);
+      const path = location.pathname.split("class/")[1].split("/")[0]
+      SetClassCode(path)
+    } else {
+      SetIsClass(false);
+    }
+  });
+
   return (
     <AppBar position="static">
       <Toolbar>
@@ -36,21 +53,25 @@ function Header() {
         >
           Canvas
         </Typography>
-        <Button color="inherit" href="/class/syllabus">
-          Syllabus
-              </Button>
-        <Button color="inherit" href="/class/modules">
-          Modules
-        </Button>
-        <Button color="inherit" href="/class/upcoming">
-          Assignments
-        </Button>
-        <Button color="inherit" href="/class/announcements">
-          Announcements
-        </Button>
-        <Button color="inherit" href="/class/grades">
-          Grades
-        </Button>
+        {isClass && (
+          <div>
+            <Button color="inherit" href={`/canvas/class/${classCode}/syllabus`}>
+              Syllabus
+            </Button>
+            <Button color="inherit" href={`/canvas/class/${classCode}/modules`}>
+              Modules
+            </Button>
+            <Button color="inherit" href={`/canvas/class/${classCode}/upcoming`}>
+              Assignments
+            </Button>
+            <Button color="inherit" href={`/canvas/class/${classCode}/announcements`}>
+              Announcements
+            </Button>
+            <Button color="inherit" href={`/canvas/class/${classCode}/grades`}>
+              Grades
+            </Button>
+          </div>
+        )}
       </Toolbar>
     </AppBar>
   );
