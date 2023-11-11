@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { GetAnnouncements, GetClassAnnouncements } from "../../data/SampleData";
+import { GetAnnouncements, GetClassAnnouncements } from "../../data/ClassAnnouncementData";
 import { Divider, Grid, List, ListItem, Typography } from "@mui/material";
 import "./AnnouncementsList.css";
 import { FiberManualRecord } from "@mui/icons-material";

@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { List, ListItem, ListItemText } from "@mui/material";
 import "./Grades.css";
 
@@ -42,6 +42,9 @@ function getWeight(type) {
 }
 
 function Grades() {
+    const {className} = useParams();
+    useEffect(()=>{},[className]);
+
     const assignmentsGrade = calculateTotalGrade('assignment');
     const participationGrade = calculateTotalGrade('participation');
     const projectsGrade = calculateTotalGrade('project');
@@ -76,7 +79,7 @@ function Grades() {
         <h1>Grades</h1>
         <List>
           {grades.map((assignment, index) => (
-            <ListItem key={index} button component={Link} to={`/grades/${assignment.page}`} style={{
+            <ListItem key={index} button component={Link} to={`/canvas/class/${className}/grades/${assignment.page}`} style={{
               border: '1px solid #ccc',
               borderRadius: '4px',
               marginBottom: '8px',

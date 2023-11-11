@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { GetAnnouncmentMessage } from "../../data/SampleData";
+import { GetAnnouncmentMessage } from "../../data/ClassAnnouncementData";
 import { Grid } from "@mui/material";
 import './Announcement.css'
 

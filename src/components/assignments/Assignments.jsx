@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { List, ListItem, ListItemText } from "@mui/material";
 import "./Assignments.css";
 
@@ -17,15 +17,19 @@ const assignments = [
 
 
 function Assignments() {
+  const {className} = useParams();
+
+  useEffect(()=>{}, [className]);
+  
   return (
     <div className="Assignments">
           <h1>Assignments</h1>
-          <Button id="upcoming" variant="contained" color="primary" href="/class/upcoming">
+          <Button id="upcoming" variant="contained" color="primary" href={`/canvas/class/${className}/upcoming`}>
               View Upcoming Assignments
           </Button>
       <List>
         {assignments.map((assignment, index) => (
-          <ListItem key={index} button component={Link} to={`/assignments/${assignment.page}`} style={{
+          <ListItem key={index} button component={Link} to={`/canvas/class/${className}/assignments/${assignment.page}`} style={{
             border: '1px solid #ccc',
             borderRadius: '4px',
             marginBottom: '8px',

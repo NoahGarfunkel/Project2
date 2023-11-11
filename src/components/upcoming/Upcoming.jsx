@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { List, ListItem, ListItemText } from "@mui/material";
 import "./Upcoming.css";
 import "./ProgressBar0.css";
@@ -19,8 +19,11 @@ const text = {
 };
 
 function Upcoming() {
+  const {className} = useParams();
   const [submittedAssignments, setSubmittedAssignments] = useState([]);
   const [progress, setProgress] = useState(0);
+
+  useEffect(()=>{},[className])
 
   const handleSubmission = (index) => {
     setSubmittedAssignments((prevState) => {
@@ -52,7 +55,7 @@ function Upcoming() {
   return (
     <div className="Upcoming">
       <h1>Upcoming Assignments</h1>
-      <Button id="all" variant="contained" color="primary" href="/class/assignments">
+      <Button id="all" variant="contained" color="primary" href={`/canvas/class/${className}/assignments`}>
         View All Assignments
       </Button>
       <List>
@@ -61,7 +64,7 @@ function Upcoming() {
             key={index}
             button
             component={Link}
-            to={`/assignments/${assignment.page}`}
+            to={`/canvas/class/${className}/assignments/${assignment.page}`}
             style={{
               border: "1px solid #ccc",
               borderRadius: "4px",
