@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { GetClasses } from "../../data/ClassData";
-import { Description, NotificationImportant } from "@mui/icons-material";
+import { Description, Grade, NotificationImportant } from "@mui/icons-material";
 import "./Dashboard.css";
 
 function Dashboard() {
@@ -37,8 +37,11 @@ function Dashboard() {
                   <Button size="small" title="Announcements" href={`/canvas/class/${val.Path}/announcements`}>
                     <NotificationImportant />
                   </Button>
-                  <Button size="small" title="Assignments" href={`/canvas/class/${val.Path}/upcoming`}>
+                  <Button size="small" title="Upcoming Assignments" href={`/canvas/class/${val.Path}/upcoming`}>
                     <Description />
+                  </Button>
+                  <Button size="small" title="Grades" href={`/canvas/class/${val.Path}/grades`}>
+                    <Grade/>
                   </Button>
               </CardActions>
             </Card>
