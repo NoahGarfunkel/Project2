@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 import { List, ListItem, ListItemText } from "@mui/material";
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -77,6 +77,8 @@ const modules = [
 ];
 
 function Modules() {
+    const {className} = useParams();
+    useEffect(()=> {}, [className]);
     const [open, setOpen] = React.useState(false);
 
     const handleClick = () => {
@@ -120,7 +122,7 @@ function Modules() {
                             {module.content.map((content, indexContent) => (
                                 content.type === 'html'
                                     ? (<ListItem key={indexContent} sx={{ pl: 4 }}
-                                                button component={Link} to={`/assignments/${content.page}`}>
+                                                button component={Link} to={`/canvas/class/${className}/assignments/${content.page}`}>
                                         <ListItemIcon>
                                             <FileOpenIcon color="primary" />
                                         </ListItemIcon>

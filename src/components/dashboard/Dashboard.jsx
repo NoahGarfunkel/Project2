@@ -1,7 +1,7 @@
 import {
   Button,
-  ButtonBase,
   Card,
+  CardActionArea,
   CardActions,
   CardContent,
   CardMedia,
@@ -9,9 +9,8 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { GetClasses } from "../../data/ClassData";
-import { NotificationImportant } from "@mui/icons-material";
+import { Description, NotificationImportant } from "@mui/icons-material";
 import "./Dashboard.css";
-import { Link, Navigate, redirect, useLocation } from "react-router-dom";
 
 function Dashboard() {
   const [classes, SetClasses] = useState([]);
@@ -21,25 +20,26 @@ function Dashboard() {
   }, []);
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} className="class-cards">
       {classes.map((val, index) => {
         return (
-          <Grid container item xs>
-            <Card sx={{ width: 330 }} Button>
-              <ButtonBase href={`/canvas/class/${val.Path}/syllabus`}>
-                <CardMedia sx={{ height: 140 }} />
+          <Grid item>
+            <Card sx={{ width: 330 }}>
+              <CardActionArea href={`/canvas/class/${val.Path}/syllabus`} className="card-btn">
+                <CardMedia sx={{ height: 140 }} className={val.CssClass} />
                 <CardContent>
-                  <h3 className="classTitle" title={val.ClassName}>
+                  <h3 className="class-title" title={val.ClassName}>
                     {val.ClassName}
                   </h3>
                 </CardContent>
-              </ButtonBase>
-              <CardActions>
-                <Grid item>
+              </CardActionArea>
+              <CardActions className="action-btns">
                   <Button size="small" title="Announcements" href={`/canvas/class/${val.Path}/announcements`}>
                     <NotificationImportant />
                   </Button>
-                </Grid>
+                  <Button size="small" title="Assignments" href={`/canvas/class/${val.Path}/upcoming`}>
+                    <Description />
+                  </Button>
               </CardActions>
             </Card>
           </Grid>

@@ -1,5 +1,30 @@
-.classTitle {
+.action-btns {
+    margin-bottom: 5%;
+}
+
+.card-btn {
+    height: 70%;
+}
+
+.class-cards {
+margin-top: 5%;
+display: flex;
+}
+
+.class-title {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis; 
+}
+
+.ui-card {
+    background-color: #d41e00;
+}
+
+.computer-graphics-card {
+    background-color: #4d3d4d;
+}
+
+.senior-design-card {
+    background-color: #254284;
 }

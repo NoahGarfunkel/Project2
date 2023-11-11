@@ -27,7 +27,7 @@ function Header() {
   });
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" className="header">
       <Toolbar>
         <IconButton
           size="large"
