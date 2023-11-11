@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import { Link, useParams } from "react-router-dom";
+import TextField from '@mui/material/TextField';
 import { List, ListItem, ListItemText } from "@mui/material";
 import "./Upcoming.css";
 import "./ProgressBar0.css";
@@ -19,7 +20,7 @@ const text = {
 };
 
 function Upcoming() {
-  const {className} = useParams();
+const {className} = useParams();
   const [submittedAssignments, setSubmittedAssignments] = useState([]);
   const [progress, setProgress] = useState(0);
 
@@ -52,6 +53,11 @@ function Upcoming() {
     return "";
   };
 
+  const handleTextFieldClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
   return (
     <div className="Upcoming">
       <h1>Upcoming Assignments</h1>
@@ -78,15 +84,32 @@ function Upcoming() {
             />
 
             {!submittedAssignments.includes(index) ? (
-              <Button
-                style={{ marginRight: "20px" }}
-                variant="contained"
-                color="primary"
-                component={Link}
-                onClick={() => handleSubmission(index)}
-              >
-                Submit
-              </Button>
+              <>
+                <Button
+                  style={{ marginRight: "20px" }}
+                  variant="contained"
+                  color="primary"
+                  component={Link}
+                  onClick={() => handleSubmission(index)}
+                >
+                  Submit
+                </Button>
+                <TextField
+                  label="Text Field"
+                  variant="outlined"
+                  size="small"
+                  style={{ marginRight: "20px" }}
+                  onClick={handleTextFieldClick}
+                />
+                <Button
+                  style={{ marginRight: "20px" }}
+                  variant="contained"
+                  color="primary"
+                  component={Link}
+                >
+                  Upload
+                </Button>
+              </>
             ) : (
               <span style={{ marginRight: "20px" }}>Submitted</span>
             )}
