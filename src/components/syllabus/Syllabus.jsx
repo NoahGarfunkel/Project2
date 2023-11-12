@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import './Syllabus.css';
+import { useParams } from 'react-router-dom';
 
 function Syllabus() {
+  const { className } = useParams();
   const [syllabusContent, setSyllabusContent] = useState('');
 
   useEffect(() => {
     const fetchSyllabus = async () => {
       try {
-        const response = await fetch('/htmlContent/syllabus.html');
+        const response = await fetch(`/htmlContent/${className}/syllabus.html`);
         const htmlContent = await response.text();
         setSyllabusContent(htmlContent);
       } catch (error) {
@@ -16,7 +18,7 @@ function Syllabus() {
     };
 
     fetchSyllabus();
-  }, []);
+  }, [className]);
 
   return (
     <div className="Syllabus">
