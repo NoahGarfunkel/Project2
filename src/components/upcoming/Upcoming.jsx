@@ -9,8 +9,12 @@ import "./ProgressBar50.css";
 import "./ProgressBar100.css";
 
 const assignments = [
-  { name: "Assignment 4", due: "Nov 15", page: "assignment_04.html" },
-  { name: "Assignment 5", due: "Dec 1", page: "assignment_05.html" },
+  { class: 'user-interface', name: "Assignment 4", due: "Nov 15", page: "assignment_04.html" },
+  { class: 'user-interface', name: "Assignment 5", due: "Dec 1", page: "assignment_05.html" },
+  { class: 'senior-design', name: "Assignment 5", due: "Nov 18", page: "assignment_05.html" },
+  { class: 'senior-design', name: "Assignment 6", due: "Nov 26", page: "assignment_06.html" },
+  { class: 'computer-graphics', name: "Assignment 8", due: "Nov 15", page: "assignment_08.html" },
+  { class: 'computer-graphics', name: "Assignment 9", due: "Dec 3", page: "assignment_09.html" },
   //{ name: 'Project 1 Implementation', due: 'Nov 13', page: '07.html' },
   //{ name: 'Project 1 Documentation', due: 'Nov 15', page: '08.html' },
 ];
@@ -22,9 +26,12 @@ const text = {
 function Upcoming() {
 const {className} = useParams();
   const [submittedAssignments, setSubmittedAssignments] = useState([]);
+  const [filteredAssignments, SetFilteredAssignments] = useState([]);
   const [progress, setProgress] = useState(0);
 
-  useEffect(()=>{},[className])
+  useEffect(()=>{
+    SetFilteredAssignments(assignments.filter(x => x.class === className))
+  },[className, filteredAssignments])
 
   const handleSubmission = (index) => {
     setSubmittedAssignments((prevState) => {
@@ -35,7 +42,7 @@ const {className} = useParams();
   };
   
   const updateProgress = (newSubmittedAssignments) => {
-    const totalAssignments = assignments.length;
+    const totalAssignments = filteredAssignments.length;
     const submittedCount = newSubmittedAssignments.length; // Use the updated state
     const newProgress = (submittedCount / totalAssignments) * 100;
     setProgress(newProgress);
@@ -65,7 +72,7 @@ const {className} = useParams();
         View All Assignments
       </Button>
       <List>
-        {assignments.map((assignment, index) => (
+        {filteredAssignments.map((assignment, index) => (
           <ListItem
             key={index}
             button

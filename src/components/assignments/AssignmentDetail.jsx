@@ -13,10 +13,22 @@ const assignments = {
     "08.html": "Project 1 Documentation",
   },
   "computer-graphics":{
-
+    "assignment_01.html": "Assignment 1",
+    "assignment_02.html": "Assignment 2",
+    "assignment_03.html": "Assignment 3",
+    "assignment_04.html": "Assignment 4",
+    "assignment_05.html": "Assignment 5",
+    "assignment_06.html": "Assignment 6",
+    "assignment_07.html": "Assignment 7",
+    "assignment_08.html": "Assignment 8",
+    "assignment_09.html": "Assignment 9",
   },
   "senior-design":{
-    
+    "assignment_01.html": "Assignment 1",
+    "assignment_02.html": "Assignment 2",
+    "assignment_03.html": "Assignment 3",
+    "assignment_04.html": "Assignment 4",
+    "assignment_05.html": "Assignment 5",
   }
 };
   

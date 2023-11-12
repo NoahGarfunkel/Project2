@@ -33,11 +33,11 @@ const assignments = [
 
 function Assignments() {
   const {className} = useParams();
-  const [filteredAssignments, SetFilteredAssignments] = useState();
+  const [filteredAssignments, SetFilteredAssignments] = useState([]);
 
   useEffect(()=>{
     SetFilteredAssignments(assignments.filter(x=> x.class == className))
-  }, [className]);
+  }, [className, filteredAssignments]);
   
   return (
     <div className="Assignments">
