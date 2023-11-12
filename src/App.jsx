@@ -16,8 +16,8 @@ import Upcoming from "./components/upcoming/Upcoming";
 import Grades from "./components/grades/Grades";
 import AnnouncementsList from "./components/announcements/AnnouncementsList";
 import Announcement from "./components/announcements/Announcement";
-import Dashboard from "./components/dashboard/Dashboard";
 import Zoom from "./components/zoom/Zoom";
+import Dashboard from "./components/dashboard/Dashboard";
 
 function App() {
   return (
