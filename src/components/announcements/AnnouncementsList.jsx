@@ -3,15 +3,16 @@ import { GetAnnouncements, GetClassAnnouncements } from "../../data/ClassAnnounc
 import { Divider, Grid, List, ListItem, Typography } from "@mui/material";
 import "./AnnouncementsList.css";
 import { FiberManualRecord } from "@mui/icons-material";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 function AnnouncementsList() {
+  const {className} = useParams();
   const [announcements, setAnnouncements] = useState([]);
   const navigate = useNavigate()
 
   useEffect(() => {
-    setAnnouncements(GetClassAnnouncements("UI"));
-  }, []);
+    setAnnouncements(GetClassAnnouncements(className));
+  }, [className]);
 
   const openAnnouncement = (announcementId) => () => {
     navigate(`${announcementId}`)
