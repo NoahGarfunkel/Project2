@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { List, ListItem, ListItemText } from "@mui/material";
 import ListItemButton from '@mui/material/ListItemButton';
@@ -12,74 +12,16 @@ import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import "./Modules.css";
-
-const modules = [
-    {
-        modNum: 1, name: 'Introduction to the Course',
-        content: [
-            {
-                name: 'Day 1 Presentation',
-                type: 'pptx',
-                page: '01-01-intro.pptx'
-            },
-            {
-                name: 'Course Grading Scale',
-                type: 'xlsx',
-                page: 'course_grading.xlsx'
-            }
-        ]
-    },
-    {
-        modNum: 2, name: 'Introduction to Design',
-        content: [
-            {
-                name: 'In Class Activity Day 1',
-                type: 'html',
-                page: 'inclass_03.html'
-            },
-            {
-                name: 'Day 1 Presentation: Design Principles',
-                type: 'pptx',
-                page: '06-01-design-principles-p1.pptx'
-            },
-            {
-                name: 'Day 2 Presentation: Color Principles',
-                type: 'pptx',
-                page: '06-03-design-principles-color.pptx'
-            }
-        ]
-    },
-    {
-        modNum: 3, name: 'Project 1 Info',
-        content: [
-            {
-                name: 'Project 1 Description',
-                type: 'html',
-                page: 'project1.html'
-            },
-            {
-                name: 'HTML Tutorial',
-                type: 'html',
-                page: 'tutorial1.html'
-            },
-            {
-                name: 'CSS Tutorial',
-                type: 'html',
-                page: 'tutorial2.html'
-            },
-            {
-                name: 'JavaScript Tutorial',
-                type: 'html',
-                page: 'tutorial4.html'
-            }
-        ]
-    }
-];
+import { GetClassModules } from "../../data/ModulesData";
 
 function Modules() {
     const {className} = useParams();
-    useEffect(()=> {}, [className]);
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
+    const [modules, SetModules] = useState([])
+
+    useEffect(()=> {
+        SetModules(GetClassModules(className))
+    }, [className]);
 
     const handleClick = () => {
         setOpen(true);
