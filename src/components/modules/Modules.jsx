@@ -6,11 +6,6 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import FolderIcon from '@mui/icons-material/Folder';
 import FileOpenIcon from '@mui/icons-material/FileOpen';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
-import Snackbar from '@mui/material/Snackbar';
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
 import "./Modules.css";
 import { GetClassModules } from "../../data/ModulesData";
 
@@ -23,30 +18,24 @@ function Modules() {
         SetModules(GetClassModules(className))
     }, [className]);
 
-    const handleClick = () => {
-        setOpen(true);
+    const handleClick = (fileName) => {
+
+        // using Java Script method to get PDF file
+        fetch(`../../../public/otherContent/${fileName}`).then((response) => {
+            response.blob().then((blob) => {
+
+                // Creating new object of PDF file
+                const fileURL =
+                    window.URL.createObjectURL(blob);
+
+                // Setting various property values
+                let alink = document.createElement("a");
+                alink.href = fileURL;
+                alink.download = fileName;
+                alink.click();
+            });
+        });
     };
-
-    const handleClose = (event, reason) => {
-        if (reason === 'clickaway') {
-            return;
-        }
-
-        setOpen(false);
-    };
-
-    const action = (
-        <React.Fragment>
-            <IconButton
-                size="small"
-                aria-label="close"
-                color="inherit"
-                onClick={handleClose}
-            >
-                <CloseIcon fontSize="small" />
-            </IconButton>
-        </React.Fragment>
-    );
 
     return (
         <div className="Modules">
@@ -70,7 +59,7 @@ function Modules() {
                                         </ListItemIcon>
                                         <ListItemText primary={`${content.name} (.html)`}  />
                                     </ListItem>)
-                                    : (<ListItemButton key={indexContent} onClick={handleClick} sx={{ pl: 4 }}>
+                                    : (<ListItemButton key={indexContent} onClick={() => handleClick(content.page)} sx={{ pl: 4 }}>
                                         <ListItemIcon>
                                             <FileDownloadIcon color="primary" />
                                         </ListItemIcon>
@@ -81,13 +70,6 @@ function Modules() {
                     </List>
                 ))}
             </List>
-            <Snackbar
-                open={open}
-                autoHideDuration={6000}
-                onClose={handleClose}
-                message={'File downloaded'}
-                action={action}
-            />
         </div>
     );
 }
