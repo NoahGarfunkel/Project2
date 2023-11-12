@@ -27,52 +27,52 @@ function App() {
           <Route 
             path="/" 
             exact 
-            element={<Navigate to="/canvas/dashboard" />}
+            element={<Navigate to={`/canvas/user/${1}/dashboard`} />}
           />
           <Route 
-            path="/canvas/dashboard" 
+            path="/canvas/user/:userId/dashboard" 
             exact 
             element={<Dashboard />} />
           <Route
-            path="/canvas/class/:className/syllabus"
+            path="/canvas/user/:userId/class/:className/syllabus"
             exact
             element={<Syllabus />}
           />
           <Route
-            path="/canvas/class/:className/modules"
+            path="/canvas/user/:userId/class/:className/modules"
             exact
             element={<Modules />}
           />
           <Route
-            path="/canvas/class/:className/assignments"
+            path="/canvas/user/:userId/class/:className/assignments"
             exact
             element={<Assignments />}
           />
           <Route
-            path="/canvas/class/:className/upcoming"
+            path="/canvas/user/:userId/class/:className/upcoming"
             exact
             element={<Upcoming />}
           />
           <Route
-            path="/canvas/class/:className/grades"
+            path="/canvas/user/:userId/class/:className/grades"
             exact
             element={<Grades />}
           />
           <Route
-            path="/canvas/class/:className/announcements"
+            path="/canvas/user/:userId/class/:className/announcements"
             exact
             element={<AnnouncementsList />}
           />
           <Route
-            path="/canvas/class/:className/announcements/:announcementId"
+            path="/canvas/user/:userId/class/:className/announcements/:announcementId"
             element={<Announcement />}
           />
           <Route
-            path="/canvas/class/:className/assignments/:pageName"
+            path="/canvas/user/:userId/class/:className/assignments/:pageName"
             element={<AssignmentDetail />}
           />
           <Route
-            path="/canvas/class/:className/zoom"
+            path="/canvas/user/:userId/class/:className/zoom"
             element={<Zoom />}
           />
         </Routes>

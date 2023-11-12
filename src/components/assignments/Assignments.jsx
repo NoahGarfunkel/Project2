@@ -32,7 +32,7 @@ const assignments = [
 
 
 function Assignments() {
-  const {className} = useParams();
+  const {userId, className} = useParams();
   const [filteredAssignments, SetFilteredAssignments] = useState([]);
 
   useEffect(()=>{
@@ -42,12 +42,12 @@ function Assignments() {
   return (
     <div className="Assignments">
           <h1>Assignments</h1>
-          <Button id="upcoming" variant="contained" color="primary" href={`/canvas/class/${className}/upcoming`}>
+          <Button id="upcoming" variant="contained" color="primary" href={`/canvas/user/${userId}/class/${className}/upcoming`}>
               View Upcoming Assignments
           </Button>
       <List>
         {filteredAssignments.map((assignment, index) => (
-          <ListItem key={index} button component={Link} to={`/canvas/class/${className}/assignments/${assignment.page}`} style={{
+          <ListItem key={index} button component={Link} to={`/canvas/user/${userId}/class/${className}/assignments/${assignment.page}`} style={{
             border: '1px solid #ccc',
             borderRadius: '4px',
             marginBottom: '8px',
