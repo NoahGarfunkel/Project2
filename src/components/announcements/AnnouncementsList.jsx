@@ -6,7 +6,7 @@ import { FiberManualRecord } from "@mui/icons-material";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 function AnnouncementsList() {
-  const {className} = useParams();
+  const {userId ,className} = useParams();
   const [announcements, setAnnouncements] = useState([]);
   const navigate = useNavigate()
 

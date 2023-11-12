@@ -10,7 +10,7 @@ import "./Modules.css";
 import { GetClassModules } from "../../data/ModulesData";
 
 function Modules() {
-    const {className} = useParams();
+    const {userId, className} = useParams();
     const [open, setOpen] = useState(false);
     const [modules, SetModules] = useState([])
 
@@ -53,7 +53,7 @@ function Modules() {
                             {module.content.map((content, indexContent) => (
                                 content.type === 'html'
                                     ? (<ListItem key={indexContent} sx={{ pl: 4 }}
-                                                button component={Link} to={`/canvas/class/${className}/assignments/${content.page}`}>
+                                                button component={Link} to={`/canvas/user/${userId}/class/${className}/assignments/${content.page}`}>
                                         <ListItemIcon>
                                             <FileOpenIcon color="primary" />
                                         </ListItemIcon>

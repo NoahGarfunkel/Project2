@@ -32,11 +32,11 @@ import { GetStudents } from "../../../data/studentData";
 function Header() {
   const location = useLocation();
   const [isClass, SetIsClass] = useState([]);
+  const [userCode, SetUserCode] = useState()
   const [classCode, SetClassCode] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [exampleUsers, setExampleUsers] = useState([]);
-  const { userId } = useParams();
   const navigate = useNavigate();
   const open = Boolean(anchorEl);
 
@@ -48,6 +48,8 @@ function Header() {
     } else {
       SetIsClass(false);
     }
+    const user = location.pathname.split("user/")[1].split("/")[0];
+    SetUserCode(user);
 
     setExampleUsers(GetStudents());
   }, [location]);
@@ -148,7 +150,7 @@ function Header() {
             color: "inherit",
             textDecoration: "none",
           }}
-          href="/"
+          href={`/canvas/user/${userCode}/dashboard`}
         >
           Canvas
         </Typography>
@@ -156,29 +158,38 @@ function Header() {
           <div>
             <Button
               color="inherit"
-              href={`/canvas/class/${classCode}/syllabus`}
+              href={`/canvas/user/${userCode}/class/${classCode}/syllabus`}
             >
               Syllabus
             </Button>
-            <Button color="inherit" href={`/canvas/class/${classCode}/modules`}>
+            <Button
+              color="inherit"
+              href={`/canvas/user/${userCode}/class/${classCode}/modules`}
+            >
               Modules
             </Button>
             <Button
               color="inherit"
-              href={`/canvas/class/${classCode}/upcoming`}
+              href={`/canvas/user/${userCode}/class/${classCode}/upcoming`}
             >
               Assignments
             </Button>
             <Button
               color="inherit"
-              href={`/canvas/class/${classCode}/announcements`}
+              href={`/canvas/user/${userCode}/class/${classCode}/announcements`}
             >
               Announcements
             </Button>
-            <Button color="inherit" href={`/canvas/class/${classCode}/grades`}>
+            <Button
+              color="inherit"
+              href={`/canvas/user/${userCode}/class/${classCode}/grades`}
+            >
               Grades
             </Button>
-            <Button color="inherit" href={`/canvas/class/${classCode}/zoom`}>
+            <Button
+              color="inherit"
+              href={`/canvas/user/${userCode}/class/${classCode}/zoom`}
+            >
               Zoom
             </Button>
           </div>

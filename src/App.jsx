@@ -27,7 +27,7 @@ function App() {
           <Route 
             path="/" 
             exact 
-            element={<Navigate to="/canvas/user/1/dashboard" />}
+            element={<Navigate to={`/canvas/user/${1}/dashboard`} />}
           />
           <Route 
             path="/canvas/user/:userId/dashboard" 

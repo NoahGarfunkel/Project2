@@ -47,10 +47,10 @@ function Grades() {
   const [finalExamGrade, SetFinalExamGrade] = useState();
   const [finalGrade, SetFinalGrade] = useState();
 
-  const { className } = useParams();
+  const { userId, className } = useParams();
   useEffect(() => {
-    SetClassGrades(GetClassGrades(className));
-  }, [className]);
+    SetClassGrades(GetClassGrades(parseInt(userId), className));
+  }, [userId, className]);
 
   useEffect(() => {
     SetAssignmentGrade(calculateTotalGrade("assignment", classGrades))

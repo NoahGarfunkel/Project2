@@ -24,7 +24,7 @@ const text = {
 };
 
 function Upcoming() {
-const {className} = useParams();
+  const {userId, className} = useParams();
   const [submittedAssignments, setSubmittedAssignments] = useState([]);
   const [filteredAssignments, SetFilteredAssignments] = useState([]);
   const [progress, setProgress] = useState(0);
@@ -68,7 +68,7 @@ const {className} = useParams();
   return (
     <div className="Upcoming">
       <h1>Upcoming Assignments</h1>
-      <Button id="all" variant="contained" color="primary" href={`/canvas/class/${className}/assignments`}>
+      <Button id="all" variant="contained" color="primary" href={`/canvas/user/${userId}/class/${className}/assignments`}>
         View All Assignments
       </Button>
       <List>
@@ -77,7 +77,7 @@ const {className} = useParams();
             key={index}
             button
             component={Link}
-            to={`/canvas/class/${className}/assignments/${assignment.page}`}
+            to={`/canvas/user/${userId}/class/${className}/assignments/${assignment.page}`}
             style={{
               border: "1px solid #ccc",
               borderRadius: "4px",
