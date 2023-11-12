@@ -20,11 +20,11 @@ function Modules() {
 
     const handleClick = (fileName) => {
 
-        // using Java Script method to get PDF file
-        fetch(`../../../public/otherContent/${fileName}`).then((response) => {
+        // using Java Script method to get file
+        fetch(`../../../../../public/otherContent/${fileName}`).then((response) => {
             response.blob().then((blob) => {
 
-                // Creating new object of PDF file
+                // Creating new object of file
                 const fileURL =
                     window.URL.createObjectURL(blob);
 

@@ -13,7 +13,7 @@ export const GetModules = () => {
         {
           name: "Course Grading Scale",
           type: "xlsx",
-          page: "course_grading.xlsx",
+          page: "grading.xlsx",
         },
       ],
     },
