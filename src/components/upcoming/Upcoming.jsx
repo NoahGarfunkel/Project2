@@ -13,47 +13,46 @@ import "./ProgressBar.css";
 const assignmentSets = {
   'user-interface': [
     [
-      { name: "Assignment 1", due: "Nov 15", page: "assignment_01.html" },
-      { name: "Assignment 2", due: "Dec 1", page: "assignment_02.html" },
-      { name: "Assignment 3", due: "Dec 15", page: "assignment_03.html" },
+      { name: "Assignment 1", due: "Sept 15", page: "assignment_01.html" },
+      { name: "Assignment 2", due: "Oct 1", page: "assignment_02.html" },
+      { name: "Assignment 3", due: "Oct 15", page: "assignment_03.html" },
     ],
     [
-      { name: "Assignment 4", due: "Jan 10", page: "assignment_04.html" },
-      { name: "Assignment 5", due: "Feb 1", page: "assignment_05.html" },
-      { name: "Assignment 6", due: "Feb 15", page: "assignment_06.html" },
+      { name: "Assignment 5", due: "Nov 15", page: "assignment_05.html" },
+      { name: 'Project 1 Implementation', due: "Nov 29", page: '07.html' },
+      { name: 'Project 1 Documentation', due: "Dec 1", page: '08.html' },
     ],
     // Add more sets as needed
   ],
   'senior-design': [
     [
-      { name: "Assignment 1", due: "Nov 18", page: "assignment_01.html" },
-      { name: "Assignment 2", due: "Nov 26", page: "assignment_02.html" },
+      { name: "Assignment 1", due: "Sept 18", page: "assignment_01.html" },
+      { name: "Assignment 2", due: "Oct 12", page: "assignment_02.html" },
       { name: "Assignment 3", due: "Dec 10", page: "assignment_03.html" },
     ],
     [
-      { name: "Assignment 4", due: "Jan 5", page: "assignment_04.html" },
-      { name: "Assignment 5", due: "Jan 20", page: "assignment_05.html" },
-      { name: "Assignment 6", due: "Feb 8", page: "assignment_06.html" },
+      { name: "Assignment 5", due: "Nov 18", page: "assignment_05.html" },
+      { name: "Assignment 6", due: "Dec 26", page: "assignment_06.html" },
     ],
     // Add more sets as needed
   ],
   'computer-graphics': [
     [
-      { name: "Assignment 1", due: "Nov 15", page: "assignment_01.html" },
-      { name: "Assignment 2", due: "Dec 3", page: "assignment_02.html" },
-      { name: "Assignment 3", due: "Dec 18", page: "assignment_03.html" },
+      { name: "Assignment 1", due: "Sept 15", page: "assignment_01.html" },
+      { name: "Assignment 2", due: "Sept 20", page: "assignment_02.html" },
+      { name: "Assignment 3", due: "Oct 2", page: "assignment_03.html" },
     ],
     [
-      { name: "Assignment 4", due: "Jan 12", page: "assignment_04.html" },
-      { name: "Assignment 5", due: "Feb 5", page: "assignment_05.html" },
-      { name: "Assignment 6", due: "Feb 20", page: "assignment_06.html" },
+      { name: "Assignment 7", due: "Nov 7", page: "assignment_07.html" },
+      { name: "Assignment 8", due: "Nov 15", page: "assignment_08.html" },
+      { name: "Assignment 9", due: "Dec 3", page: "assignment_09.html" },
     ],
     // Add more sets as needed
   ],
 };
 
 function Upcoming() {
-  const {userId, className} = useParams();
+  const { userId, className } = useParams();
   const [submittedAssignments, setSubmittedAssignments] = useState([]);
   const [currentSet, setCurrentSet] = useState(0);
   const [assignments, setAssignments] = useState(assignmentSets[className][currentSet]);
@@ -61,7 +60,7 @@ function Upcoming() {
   const [open1, setOpen1] = React.useState(false);
   const [open2, setOpen2] = React.useState(false);
 
-  useEffect(()=>{
+  useEffect(() => {
     setAssignments(assignmentSets[className][currentSet]);
   }, [className, currentSet]);
 
@@ -162,7 +161,7 @@ function Upcoming() {
             />
             {!submittedAssignments.includes(index) ? (
               <>
-                {index === 0 ? (
+                <Tooltip title={index === 0 ? "Submit" : "Submit Early for an extra 5 points!"}>
                   <Button
                     style={{ marginRight: "20px" }}
                     variant="contained"
@@ -172,19 +171,7 @@ function Upcoming() {
                   >
                     Submit
                   </Button>
-                ) : (
-                  <Tooltip title="Submit Early for an extra 5 points!">
-                    <Button
-                      style={{ marginRight: "20px" }}
-                      variant="contained"
-                      color="primary"
-                      component={Link}
-                      onClick={() => handleSubmission(index)}
-                    >
-                      Submit
-                    </Button>
-                  </Tooltip>
-                )}
+                </Tooltip>
                 <TextField
                   label="Text Field"
                   variant="outlined"
