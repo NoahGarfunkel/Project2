@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 
 function Todo() {
   const [inputValue, setInputValue] = useState('');
@@ -20,13 +21,12 @@ function Todo() {
     <div className="Todo" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
       <h1> Todo </h1>
       
-      <input
-        type="text"
-        value={inputValue}
-        onChange={handleInputChange}
-        placeholder="Add a new task..."
-      />
-      
+      <TextField
+                  label="Add a new task..."
+                  variant="filled"
+                  value ={inputValue}
+                  onChange={handleInputChange}
+                />
       <Button onClick={handleAddClick} color = "primary" variant="contained"  sx={{ marginTop: 2 }} >Add </Button>
 
       <ul>
