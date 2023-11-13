@@ -201,8 +201,8 @@ function Upcoming() {
         ))}
       </List>
       <div className="Assignments">
-        <h1>Progress</h1>
-        <div className="progress-container">
+        <h1>Level Up Progress</h1>
+        <div className="progress-container"> XP
           <div className="progress-bar">
             <div className="progress-indicator" style={getProgressBarStyle()}></div>
           </div>
