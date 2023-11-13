@@ -19,6 +19,7 @@ import Announcement from "./components/announcements/Announcement";
 import Zoom from "./components/zoom/Zoom";
 import Dashboard from "./components/dashboard/Dashboard";
 import Leaderboard from "./components/leaderboard/Leaderboard";
+import Todo from "./components/todo/Todo";
 
 function App() {
   return (
@@ -79,6 +80,10 @@ function App() {
           <Route
             path="/canvas/user/:userId/class/:className/leaderboard"
             element={<Leaderboard />}
+          />
+          <Route
+            path="/canvas/user/:userId/class/:className/todo"
+            element={<Todo />}
           />
         </Routes>
     </BrowserRouter>

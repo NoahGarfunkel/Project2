@@ -43,14 +43,21 @@ function Header() {
   useEffect(() => {
     if (location.pathname.includes("class")) {
       SetIsClass(true);
-      const path = location.pathname.split("class/")[1].split("/")[0];
-      SetClassCode(path);
+      const classPath = location.pathname.split("class/");
+      if (classPath.length > 1) {
+        const path = classPath[1].split("/")[0];
+        SetClassCode(path);
+      }
     } else {
       SetIsClass(false);
     }
-    const user = location.pathname.split("user/")[1].split("/")[0];
-    SetUserCode(user);
-
+  
+    const userPath = location.pathname.split("user/");
+    if (userPath.length > 1) {
+      const user = userPath[1].split("/")[0];
+      SetUserCode(user);
+    }
+  
     setExampleUsers(GetStudents());
   }, [location]);
 
@@ -197,6 +204,12 @@ function Header() {
               href={`/canvas/user/${userCode}/class/${classCode}/zoom`}
             >
               Zoom
+            </Button>
+            <Button
+              color="inherit"
+              href={`/canvas/user/${userCode}/class/${classCode}/todo`}
+            >
+              Todo
             </Button>
           </div>
         )}
