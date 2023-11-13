@@ -26,6 +26,12 @@ function Todo() {
                   variant="filled"
                   value ={inputValue}
                   onChange={handleInputChange}
+                  InputProps={{
+                    style: {
+                      color: 'blue', // Change this to the desired text color
+                      backgroundColor: 'lightgray', // Change this to the desired background color
+                    },
+                  }}
                 />
       <Button onClick={handleAddClick} color = "primary" variant="contained"  sx={{ marginTop: 2 }} >Add </Button>
 

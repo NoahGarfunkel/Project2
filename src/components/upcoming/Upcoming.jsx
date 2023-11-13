@@ -178,6 +178,12 @@ function Upcoming() {
                   size="small"
                   style={{ marginRight: "20px" }}
                   onClick={handleTextFieldClick}
+                  InputProps={{
+                    style: {
+                      color: 'blue', // Change this to the desired text color
+                      backgroundColor: 'lightgray', // Change this to the desired background color
+                    },
+                  }}
                 />
                 <Button
                   style={{ marginRight: "20px" }}
