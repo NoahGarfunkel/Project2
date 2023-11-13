@@ -93,7 +93,7 @@ function Grades() {
             key={index}
             button
             component={Link}
-            to={`/canvas/class/${className}/grades/${assignment.page}`}
+            to={`/canvas/class/${className}/assignments/${assignment.page}`}
             style={{
               border: "1px solid #ccc",
               borderRadius: "4px",

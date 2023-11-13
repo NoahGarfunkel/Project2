@@ -8,90 +8,98 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Tooltip from '@mui/material/Tooltip';
 import "./Upcoming.css";
-import "./ProgressBar0.css";
-import "./ProgressBar50.css";
-import "./ProgressBar100.css";
+import "./ProgressBar.css";
 
-const assignments = [
-  { class: 'user-interface', name: "Assignment 4", due: "Nov 15", page: "assignment_04.html" },
-  { class: 'user-interface', name: "Assignment 5", due: "Dec 1", page: "assignment_05.html" },
-  { class: 'senior-design', name: "Assignment 5", due: "Nov 18", page: "assignment_05.html" },
-  { class: 'senior-design', name: "Assignment 6", due: "Nov 26", page: "assignment_06.html" },
-  { class: 'computer-graphics', name: "Assignment 8", due: "Nov 15", page: "assignment_08.html" },
-  { class: 'computer-graphics', name: "Assignment 9", due: "Dec 3", page: "assignment_09.html" },
-  //{ name: 'Project 1 Implementation', due: 'Nov 13', page: '07.html' },
-  //{ name: 'Project 1 Documentation', due: 'Nov 15', page: '08.html' },
-];
-
-const text = {
-  color: "white",
+const assignmentSets = {
+  'user-interface': [
+    [
+      { name: "Assignment 1", due: "Nov 15", page: "assignment_01.html" },
+      { name: "Assignment 2", due: "Dec 1", page: "assignment_02.html" },
+      { name: "Assignment 3", due: "Dec 15", page: "assignment_03.html" },
+    ],
+    [
+      { name: "Assignment 4", due: "Jan 10", page: "assignment_04.html" },
+      { name: "Assignment 5", due: "Feb 1", page: "assignment_05.html" },
+      { name: "Assignment 6", due: "Feb 15", page: "assignment_06.html" },
+    ],
+    // Add more sets as needed
+  ],
+  'senior-design': [
+    [
+      { name: "Assignment 1", due: "Nov 18", page: "assignment_01.html" },
+      { name: "Assignment 2", due: "Nov 26", page: "assignment_02.html" },
+      { name: "Assignment 3", due: "Dec 10", page: "assignment_03.html" },
+    ],
+    [
+      { name: "Assignment 4", due: "Jan 5", page: "assignment_04.html" },
+      { name: "Assignment 5", due: "Jan 20", page: "assignment_05.html" },
+      { name: "Assignment 6", due: "Feb 8", page: "assignment_06.html" },
+    ],
+    // Add more sets as needed
+  ],
+  'computer-graphics': [
+    [
+      { name: "Assignment 1", due: "Nov 15", page: "assignment_01.html" },
+      { name: "Assignment 2", due: "Dec 3", page: "assignment_02.html" },
+      { name: "Assignment 3", due: "Dec 18", page: "assignment_03.html" },
+    ],
+    [
+      { name: "Assignment 4", due: "Jan 12", page: "assignment_04.html" },
+      { name: "Assignment 5", due: "Feb 5", page: "assignment_05.html" },
+      { name: "Assignment 6", due: "Feb 20", page: "assignment_06.html" },
+    ],
+    // Add more sets as needed
+  ],
 };
 
 function Upcoming() {
   const {userId, className} = useParams();
   const [submittedAssignments, setSubmittedAssignments] = useState([]);
-  const [filteredAssignments, SetFilteredAssignments] = useState([]);
+  const [currentSet, setCurrentSet] = useState(0);
+  const [assignments, setAssignments] = useState(assignmentSets[className][currentSet]);
   const [progress, setProgress] = useState(0);
-    const [open1, setOpen1] = React.useState(false);
-    const [open2, setOpen2] = React.useState(false);
+  const [open1, setOpen1] = React.useState(false);
+  const [open2, setOpen2] = React.useState(false);
 
   useEffect(()=>{
-    SetFilteredAssignments(assignments.filter(x => x.class === className))
-  },[className, filteredAssignments])
+    setAssignments(assignmentSets[className][currentSet]);
+  }, [className, currentSet]);
 
   const handleSubmission = (index) => {
     setSubmittedAssignments((prevState) => {
       const newState = [...prevState, index];
-      updateProgress(newState); // Pass the updated state to the function
-      return newState; // Return the new state
+      updateProgress(newState);
+      return newState;
     });
-      if (index == 0) {
-          setOpen1(true);
-      }
-      else {
-          setOpen2(true);
-      }
+    if (index === 0) {
+      setOpen1(true);
+    }
+    else {
+      setOpen2(true);
+    }
   };
 
-  const handleClose = (event, reason) => {
-      if (reason === 'clickaway') {
-          return;
-      }
-
-      setOpen1(false);
-      setOpen2(false);
-    };
-
-    const action = (
-        <React.Fragment>
-            <IconButton
-                size="small"
-                aria-label="close"
-                color="inherit"
-                onClick={handleClose}
-            >
-                <CloseIcon fontSize="small" />
-            </IconButton>
-        </React.Fragment>
-    );
-  
   const updateProgress = (newSubmittedAssignments) => {
-    const totalAssignments = filteredAssignments.length;
-    const submittedCount = newSubmittedAssignments.length; // Use the updated state
+    const totalAssignments = assignments.length;
+    const submittedCount = newSubmittedAssignments.length;
     const newProgress = (submittedCount / totalAssignments) * 100;
     setProgress(newProgress);
   };
-  
 
-  const getProgressBarClass = () => {
-    if (progress === 0) {
-      return "0";
-    } else if (progress === 50) {
-      return "50";
-    } else if (progress === 100) {
-      return "100";
+  const getProgressBarStyle = () => {
+    return {
+      width: `${progress}%`,
+    };
+  };
+
+  const handleNext = () => {
+    const nextSet = currentSet + 1;
+    if (nextSet < assignmentSets[className].length) {
+      setCurrentSet(nextSet);
+      setAssignments(assignmentSets[className][nextSet]);
+      setProgress(0);
+      setSubmittedAssignments([]);
     }
-    return "";
   };
 
   const handleTextFieldClick = (e) => {
@@ -99,14 +107,43 @@ function Upcoming() {
     e.stopPropagation();
   };
 
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen1(false);
+    setOpen2(false);
+  };
+
+  const action = (
+    <React.Fragment>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleClose}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
+
   return (
     <div className="Upcoming">
       <h1>Upcoming Assignments</h1>
       <Button id="all" variant="contained" color="primary" href={`/canvas/user/${userId}/class/${className}/assignments`}>
         View All Assignments
       </Button>
+      <Button
+        style={{ float: "right" }}
+        variant="contained"
+        color="primary"
+        onClick={handleNext}
+      >
+        Next
+      </Button>
       <List>
-        {filteredAssignments.map((assignment, index) => (
+        {assignments.map((assignment, index) => (
           <ListItem
             key={index}
             button
@@ -119,44 +156,41 @@ function Upcoming() {
             }}
           >
             <ListItemText
-              secondaryTypographyProps={{ style: text }}
+              secondaryTypographyProps={{ style: { color: "white" } }}
               primary={assignment.name}
               secondary={`Due: ${assignment.due}`}
             />
-
             {!submittedAssignments.includes(index) ? (
               <>
-                {index == 1
-                    ? (
-                        <Tooltip title="Submit Early for an extra 5 points!">
-                            <Button
-                                style={{ marginRight: "20px" }}
-                                variant="contained"
-                                color="primary"
-                                component={Link}
-                                onClick={() => handleSubmission(index)}
-                            >
-                                Submit
-                            </Button>
-                        </Tooltip>
-                    )
-                    : (
-                        <Button
-                            style={{ marginRight: "20px" }}
-                            variant="contained"
-                            color="primary"
-                            component={Link}
-                            onClick={() => handleSubmission(index)}
-                        >
-                            Submit
-                        </Button>
-                    )}
+                {index === 0 ? (
+                  <Button
+                    style={{ marginRight: "20px" }}
+                    variant="contained"
+                    color="primary"
+                    component={Link}
+                    onClick={() => handleSubmission(index)}
+                  >
+                    Submit
+                  </Button>
+                ) : (
+                  <Tooltip title="Submit Early for an extra 5 points!">
+                    <Button
+                      style={{ marginRight: "20px" }}
+                      variant="contained"
+                      color="primary"
+                      component={Link}
+                      onClick={() => handleSubmission(index)}
+                    >
+                      Submit
+                    </Button>
+                  </Tooltip>
+                )}
                 <TextField
                   label="Text Field"
                   variant="outlined"
                   size="small"
                   style={{ marginRight: "20px" }}
-                            onClick={handleTextFieldClick}
+                  onClick={handleTextFieldClick}
                 />
                 <Button
                   style={{ marginRight: "20px" }}
@@ -177,22 +211,22 @@ function Upcoming() {
         <h1>Progress</h1>
         <div className="progress-container">
           <div className="progress-bar">
-            <div className={`progress-indicator${getProgressBarClass()}`}></div>
+            <div className="progress-indicator" style={getProgressBarStyle()}></div>
           </div>
         </div>
         <Snackbar
-            open={open1}
-            autoHideDuration={6000}
-            onClose={handleClose}
-            message="+20 points!"
-            action={action}
+          open={open1}
+          autoHideDuration={6000}
+          onClose={handleClose}
+          message="+20 points!"
+          action={action}
         />
         <Snackbar
-            open={open2}
-            autoHideDuration={6000}
-            onClose={handleClose}
-            message="+25 points!"
-            action={action}
+          open={open2}
+          autoHideDuration={6000}
+          onClose={handleClose}
+          message="+25 points!"
+          action={action}
         />
       </div>
     </div>
