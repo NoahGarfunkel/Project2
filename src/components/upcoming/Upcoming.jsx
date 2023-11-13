@@ -18,7 +18,8 @@ const assignmentSets = {
       { name: "Assignment 3", due: "Oct 15", page: "assignment_03.html" },
     ],
     [
-      { name: "Assignment 5", due: "Nov 15", page: "assignment_05.html" },
+      { name: "Assignment 4", due: "Nov 13", page: "assignment_04.html" },
+      { name: "Assignment 5", due: "Nov 18", page: "assignment_05.html" },
       { name: 'Project 1 Implementation', due: "Nov 29", page: '07.html' },
       { name: 'Project 1 Documentation', due: "Dec 1", page: '08.html' },
     ],
@@ -134,12 +135,12 @@ function Upcoming() {
         View All Assignments
       </Button>
       <Button
-        style={{ float: "right" }}
+        style={{ position: 'absolute', top: 0, right: 0 }}
         variant="contained"
         color="primary"
         onClick={handleNext}
       >
-        Next
+        Progress Semester
       </Button>
       <List>
         {assignments.map((assignment, index) => (
