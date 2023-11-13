@@ -11,7 +11,6 @@ import { GetClassModules } from "../../data/ModulesData";
 
 function Modules() {
     const {userId, className} = useParams();
-    const [open, setOpen] = useState(false);
     const [modules, SetModules] = useState([])
 
     useEffect(()=> {

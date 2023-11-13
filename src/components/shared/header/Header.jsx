@@ -155,7 +155,13 @@ function Header() {
           Canvas
         </Typography>
         {isClass && (
-          <div>
+            <div>
+            <Button
+                color="inherit"
+                href={`/canvas/user/${userCode}/class/${classCode}/announcements`}
+            >
+                Announcements
+            </Button>
             <Button
               color="inherit"
               href={`/canvas/user/${userCode}/class/${classCode}/syllabus`}
@@ -176,15 +182,15 @@ function Header() {
             </Button>
             <Button
               color="inherit"
-              href={`/canvas/user/${userCode}/class/${classCode}/announcements`}
-            >
-              Announcements
-            </Button>
-            <Button
-              color="inherit"
               href={`/canvas/user/${userCode}/class/${classCode}/grades`}
             >
               Grades
+            </Button>
+            <Button
+                color="inherit"
+                href={`/canvas/user/${userCode}/class/${classCode}/leaderboard`}
+            >
+                Leaderboard
             </Button>
             <Button
               color="inherit"

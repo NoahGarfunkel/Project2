@@ -3,6 +3,10 @@ import Button from "@mui/material/Button";
 import { Link, useParams } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import { List, ListItem, ListItemText } from "@mui/material";
+import Snackbar from '@mui/material/Snackbar';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import Tooltip from '@mui/material/Tooltip';
 import "./Upcoming.css";
 import "./ProgressBar0.css";
 import "./ProgressBar50.css";
@@ -28,6 +32,8 @@ function Upcoming() {
   const [submittedAssignments, setSubmittedAssignments] = useState([]);
   const [filteredAssignments, SetFilteredAssignments] = useState([]);
   const [progress, setProgress] = useState(0);
+    const [open1, setOpen1] = React.useState(false);
+    const [open2, setOpen2] = React.useState(false);
 
   useEffect(()=>{
     SetFilteredAssignments(assignments.filter(x => x.class === className))
@@ -39,7 +45,35 @@ function Upcoming() {
       updateProgress(newState); // Pass the updated state to the function
       return newState; // Return the new state
     });
+      if (index == 0) {
+          setOpen1(true);
+      }
+      else {
+          setOpen2(true);
+      }
   };
+
+  const handleClose = (event, reason) => {
+      if (reason === 'clickaway') {
+          return;
+      }
+
+      setOpen1(false);
+      setOpen2(false);
+    };
+
+    const action = (
+        <React.Fragment>
+            <IconButton
+                size="small"
+                aria-label="close"
+                color="inherit"
+                onClick={handleClose}
+            >
+                <CloseIcon fontSize="small" />
+            </IconButton>
+        </React.Fragment>
+    );
   
   const updateProgress = (newSubmittedAssignments) => {
     const totalAssignments = filteredAssignments.length;
@@ -92,21 +126,37 @@ function Upcoming() {
 
             {!submittedAssignments.includes(index) ? (
               <>
-                <Button
-                  style={{ marginRight: "20px" }}
-                  variant="contained"
-                  color="primary"
-                  component={Link}
-                  onClick={() => handleSubmission(index)}
-                >
-                  Submit
-                </Button>
+                {index == 1
+                    ? (
+                        <Tooltip title="Submit Early for an extra 5 points!">
+                            <Button
+                                style={{ marginRight: "20px" }}
+                                variant="contained"
+                                color="primary"
+                                component={Link}
+                                onClick={() => handleSubmission(index)}
+                            >
+                                Submit
+                            </Button>
+                        </Tooltip>
+                    )
+                    : (
+                        <Button
+                            style={{ marginRight: "20px" }}
+                            variant="contained"
+                            color="primary"
+                            component={Link}
+                            onClick={() => handleSubmission(index)}
+                        >
+                            Submit
+                        </Button>
+                    )}
                 <TextField
                   label="Text Field"
                   variant="outlined"
                   size="small"
                   style={{ marginRight: "20px" }}
-                  onClick={handleTextFieldClick}
+                            onClick={handleTextFieldClick}
                 />
                 <Button
                   style={{ marginRight: "20px" }}
@@ -130,6 +180,20 @@ function Upcoming() {
             <div className={`progress-indicator${getProgressBarClass()}`}></div>
           </div>
         </div>
+        <Snackbar
+            open={open1}
+            autoHideDuration={6000}
+            onClose={handleClose}
+            message="+20 points!"
+            action={action}
+        />
+        <Snackbar
+            open={open2}
+            autoHideDuration={6000}
+            onClose={handleClose}
+            message="+25 points!"
+            action={action}
+        />
       </div>
     </div>
   );

@@ -18,6 +18,7 @@ import AnnouncementsList from "./components/announcements/AnnouncementsList";
 import Announcement from "./components/announcements/Announcement";
 import Zoom from "./components/zoom/Zoom";
 import Dashboard from "./components/dashboard/Dashboard";
+import Leaderboard from "./components/leaderboard/Leaderboard";
 
 function App() {
   return (
@@ -72,8 +73,12 @@ function App() {
             element={<AssignmentDetail />}
           />
           <Route
-            path="/canvas/user/:userId/class/:className/zoom"
-            element={<Zoom />}
+              path="/canvas/user/:userId/class/:className/zoom"
+              element={<Zoom />}
+          />
+          <Route
+            path="/canvas/user/:userId/class/:className/leaderboard"
+            element={<Leaderboard />}
           />
         </Routes>
     </BrowserRouter>
