@@ -28,7 +28,7 @@ function Todo() {
                   onChange={handleInputChange}
                   InputProps={{
                     style: {
-                      color: 'blue', // Change this to the desired text color
+                      color: 'black', // Change this to the desired text color
                       backgroundColor: 'lightgray', // Change this to the desired background color
                     },
                   }}
