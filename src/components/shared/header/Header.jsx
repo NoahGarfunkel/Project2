@@ -27,7 +27,7 @@ import {
   MenuItem,
 } from "@mui/material";
 import { AccountCircle, CloseRounded } from "@mui/icons-material";
-import { GetStudents } from "../../../data/studentData";
+import { GetStudents } from "../../../data/StudentData.js";
 
 function Header() {
   const location = useLocation();
