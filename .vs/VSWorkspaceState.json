@@ -1,15 +1,15 @@
 {
   "ExpandedNodes": [
     "",
-    "\\public",
-    "\\public\\htmlContent",
     "\\src",
     "\\src\\components",
-    "\\src\\components\\shared",
-    "\\src\\components\\shared\\header",
+    "\\src\\components\\announcements",
+    "\\src\\components\\assignments",
+    "\\src\\components\\leaderboard",
     "\\src\\components\\syllabus",
-    "\\src\\components\\upcoming"
+    "\\src\\components\\upcoming",
+    "\\src\\data"
   ],
-  "SelectedNode": "\\public\\htmlContent\\assignment_01.html",
+  "SelectedNode": "\\src\\components\\announcements\\AnnouncementsList.jsx",
   "PreviewInSolutionExplorer": false
 }
