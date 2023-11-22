@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/canvas/user/:userId/dashboard",
+      "destination": "https://src/components/dashboard/Dashboard.jsx"
+    },
+    {
+      "source": "/canvas/user/:userId/class/:className/syllabus",
+      "destination": "https://src/components/syllabus/Syllabus.jsx"
+    }
+  ]
+}
