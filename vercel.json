@@ -1,12 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/canvas/user/:userId/dashboard",
-      "destination": "/canvas/user/:userId/dashboard"
-    },
-    {
-      "source": "/canvas/user/:userId/class/:className/syllabus",
-      "destination": "/canvas/user/:userId/class/:className/syllabus"
+      "source": "/(.*)",
+      "destination": "/"
     }
   ]
 }
