@@ -2,11 +2,11 @@
   "rewrites": [
     {
       "source": "/canvas/user/:userId/dashboard",
-      "destination": "https://src/components/dashboard/Dashboard.jsx"
+      "destination": "/canvas/user/:userId/dashboard"
     },
     {
       "source": "/canvas/user/:userId/class/:className/syllabus",
-      "destination": "https://src/components/syllabus/Syllabus.jsx"
+      "destination": "/canvas/user/:userId/class/:className/syllabus"
     }
   ]
 }
